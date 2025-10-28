@@ -95,11 +95,37 @@ source install/setup.bash
 ```
 
 ## 🚀 Quick Start
+### 🔹 Simulation with ZsiBot-MATRiX
+   Welcome to explore our another open-source simulation project, MATRiX:
+👉 https://github.com/zsibot/matrix
+1. **Launch the Navigation Stack:**
+```bash
+bash script/bash/start_navigation.sh
+```
+
+2. **Launch UE and MuJoCo Simulation**
+```bash
+cd matrix/        # Make sure you have already cloned the MATRiX project!
+bash run_sim.sh 1 3
+```
+
+3. **Send Navigation Goals via RViz2**
+   - In RViz2, use the “nav2_rviz_plugins” panel to send navigation commands.
+   - The robot will execute navigation tasks such as waypoint patrols with static and dynamic obstacle avoidance.
+   - Demo results (Note: Check the clear GIFs in the demo_gif folder.):
+     - patrol task with multiple midpoints 
+       -   ![patrol task with avoidance](demo_gif/ue_mini.gif)
+
+4. **Stop the Navigation Stack**
+```bash
+bash script/bash/stop_navigation.sh
+```
+
 
 ### Simulation with Gazebo
 
 #### 🔹 Single Point Navigation
-1. **Launch Navigation Stack:**
+1. **Launch the Navigation Stack:**
 ```bash
 ros2 launch robot_navigo navigation_bringup.launch.py \
     platform:=GAZEBO \
@@ -111,9 +137,11 @@ ros2 launch pub_tf pub_tf.launch.py tf_type:=gazebo_tf
 ```
 
 2. **Launch Gazebo to Give Odom Info**
+Make sure the Gazebo simulation is running to publish odometry (/odom/gazebo) and other necessary topics for navigation.
 
-3. **Launch RViz to Send Navigation Goals:**
-   - Use "2D Goal Pose" tool in RViz2 to send navigation commands
+3. **Send Navigation Goals via RViz2**
+   - Open RViz2 and use the “2D Goal Pose” tool to send navigation targets.
+   - The robot will autonomously navigate to the goal position, avoiding both static and dynamic obstacles.
    - Demo results:
      - 🟢 Static Avoidance
         ![single point with static avoidance](demo_gif/single_static.gif)
@@ -142,28 +170,6 @@ rviz2 -d /path/to/your/rviz2_config.rviz
    - Demo results:
      - patrol task with multiple midpoints 
         ![patrol task with avoidance](demo_gif/patrol.gif)
-
-### 🔹 Simulation with ZsiBot-MATRIX 
-1. **Launch Navigation Stack:**
-```bash
-ros2 launch robot_navigo navigation_bringup.launch.py \
-    platform:=UE \
-    mc_controller_type:=RL_TRACK_VELOCITY \
-    communication_type:=UDP \
-    map:=/path/to/map/map.yaml
-
-ros2 launch pub_tf pub_tf.launch.py tf_type:=mujoco_tf
-
-rviz2 -d /path/to/your/rviz2_config.rviz
-```
-
-2. **Launch UE and Mujoco to Give Odom Info**
-
-3. **Launch RViz to Send Navigation Goals:**
-   - Use "nav2_rviz_plugins" Panel in RViz2 to send navigation commands
-   - Demo results (Note: Check the clear GIFs in the demo_gif folder.):
-     - patrol task with multiple midpoints 
-       -   ![patrol task with avoidance](demo_gif/ue_mini.gif)
        
 ### Hardware Deployment
 
