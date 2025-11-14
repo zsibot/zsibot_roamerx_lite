@@ -20,7 +20,7 @@ public:
           update_rate_(10.0)
     {
         // 创建发布器
-        odom_pub_ = this->create_publisher<nav_msgs::msg::Odometry>("/odom/ground_truth", 10);
+        odom_pub_ = this->create_publisher<nav_msgs::msg::Odometry>("/odom/current_pose", 10);
 
         // 创建定时器，周期性发布消息
         timer_ = this->create_wall_timer(

@@ -34,7 +34,7 @@ ros2 service call /load_map_service robots_dog_msgs/srv/LoadMap "{pcd_path: /hom
 | imu_topic                    | string | /livox/imu           | IMU话题名称  |
 | localization_odom_frame_id   | string | base_link            | 定位里程计frame名称  |
 | **话题名称 (Topic Names)** |
-| odom_topic                   | string | /odom/ground_truth  | 定位里程计话题名称  |
+| odom_topic                   | string | /odom/current_pose  | 定位里程计话题名称  |
 | aligned_points_topic         | string | /aligned_points      | 对齐点云话题名称  |
 | localization_info_topic      | string | /localization_info   | 定位信息话题名称  |
 | global_map_points_topic      | string | /global_map_points   | 全局地图点云话题名称  |

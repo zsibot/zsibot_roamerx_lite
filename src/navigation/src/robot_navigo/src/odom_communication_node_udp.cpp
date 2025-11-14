@@ -23,12 +23,12 @@ OdomCommunicationNodeUdp::OdomCommunicationNodeUdp()
     : Node("odom_communication_node")
 {
     tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(this);
-    odom_pub_       = this->create_publisher<nav_msgs::msg::Odometry>("/odom/ground_truth", 10);
+    odom_pub_       = this->create_publisher<nav_msgs::msg::Odometry>("/odom/current_pose", 10);
 
     last_pub_time_ = std::chrono::high_resolution_clock::now();
     // 订阅自己的 odom，然后发出
     // odom_subscription_ = this->create_subscription<nav_msgs::msg::Odometry>(
-    //     "/odom/ground_truth", 10, std::bind(&OdomCommunicationNodeUdp::odom_callback, this, std::placeholders::_1));
+    //     "/odom/current_pose", 10, std::bind(&OdomCommunicationNodeUdp::odom_callback, this, std::placeholders::_1));
 
     // 接受规划速度，向 mc 发送实际速度指令
     planner_vel_cmd_subscriber = this->create_subscription<geometry_msgs::msg::Twist>(

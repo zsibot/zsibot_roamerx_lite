@@ -14,7 +14,7 @@ public:
 
         // Create a subscription to the /odom topic
         odom_subscription_ = this->create_subscription<nav_msgs::msg::Odometry>(
-            "/odom/ground_truth", 10, std::bind(&OdomToTFBroadcaster::odom_callback, this, std::placeholders::_1));
+            "/odom/current_pose", 10, std::bind(&OdomToTFBroadcaster::odom_callback, this, std::placeholders::_1));
 
         RCLCPP_INFO(this->get_logger(), "Odom to TF Broadcaster started");
     }

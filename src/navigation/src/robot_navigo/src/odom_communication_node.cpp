@@ -15,9 +15,9 @@ OdomCommunicationNode::OdomCommunicationNode()
 
     tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(this);
 
-    odom_pub_          = this->create_publisher<nav_msgs::msg::Odometry>("/odom/ground_truth", 10);
+    odom_pub_          = this->create_publisher<nav_msgs::msg::Odometry>("/odom/current_pose", 10);
     odom_subscription_ = this->create_subscription<nav_msgs::msg::Odometry>(
-        "/odom/ground_truth", 10, std::bind(&OdomCommunicationNode::odom_callback, this, std::placeholders::_1));
+        "/odom/current_pose", 10, std::bind(&OdomCommunicationNode::odom_callback, this, std::placeholders::_1));
     odom_lcm_handler_ = std::thread(&OdomCommunicationNode::handler_interface_lcm, this);
 
     lc_.subscribe("state_estimator", &OdomCommunicationNode::odom_lcm_receive_handler, this);
